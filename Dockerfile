@@ -1,8 +1,10 @@
-FROM debian:buster
+FROM ubuntu:focal
 
 LABEL maintainer="Linagora Folks <lgs-openpaas-dev@linagora.com>"
 LABEL description="Provides an image with Janus Gateway"
 
+ENV DEBIAN_FRONTEND "noninteractive"
+RUN ln -fs /usr/share/zoneinfo/Europe/Rome /etc/localtime
 RUN apt-get update -y \
     && apt-get upgrade -y
 
@@ -63,7 +65,7 @@ RUN cd ~ \
     && git clone https://github.com/meetecho/janus-gateway.git \
     && cd janus-gateway \
     && sh autogen.sh \
-    && ./configure --prefix=/opt/janus --disable-rabbitmq --disable-mqtt \
+    && ./configure --prefix=/opt/janus --disable-rabbitmq --disable-mqtt --enable-docs \
     && make CFLAGS='-std=c99' \
     && make install \
     && make configs
