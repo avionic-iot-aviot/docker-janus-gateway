@@ -4,7 +4,7 @@ LABEL maintainer="Linagora Folks <lgs-openpaas-dev@linagora.com>"
 LABEL description="Provides an image with Janus Gateway"
 
 ENV DEBIAN_FRONTEND "noninteractive"
-RUN ln -fs /usr/share/zoneinfo/Europe/Rome /etc/localtime
+RUN ln -fs /usr/share/zoneinfo/America/New_York /etc/localtime
 RUN apt-get update -y \
     && apt-get upgrade -y
 
